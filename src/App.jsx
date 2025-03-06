@@ -1,24 +1,17 @@
-import { Routes, Route, BrowserRouter } from "react-router-dom";
-import Home from "./pages/Home";
-import EditTask from "./pages/EditTask";
-import NotFound from "./pages/NotFound";
-import Navbar from "./components/Navbar";
-import { useState } from "react";
-import { Counter } from "./pages/Counter";
+import React from "react";
+import { Routes, Route } from "react-router-dom";
+import TaskList from "./pages/TaskList";
+import TaskForm from "./pages/TaskForm";
+import TaskDetails from "./pages/TaskDetails";
 
 function App() {
-  const [tasks, setTasks] = useState([]);
-
   return (
-    <BrowserRouter>
-      <Navbar />
-      <Routes>
-        <Route path="/" element={<Home />} />
-        <Route path="/count" element={<Counter />} />
-        <Route path="/edit/:index" element={<EditTask tasks={tasks} setTasks={setTasks} />} />
-        <Route path="*" element={<NotFound />} />
-      </Routes>
-    </BrowserRouter>
+    <Routes>
+      <Route path="/" element={<TaskList />} />
+      <Route path="/add" element={<TaskForm />} />
+      <Route path="/edit/:id" element={<TaskForm />} />
+      <Route path="/task/:id" element={<TaskDetails />} />
+    </Routes>
   );
 }
 
