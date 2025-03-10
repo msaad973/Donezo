@@ -29,7 +29,7 @@ function TaskForm() {
       <form onSubmit={handleSubmit}>
         <TextField fullWidth label="Title" value={title} onChange={(e) => setTitle(e.target.value)} margin="normal" />
         <TextField fullWidth label="Description" value={description} onChange={(e) => setDescription(e.target.value)} margin="normal" multiline />
-        <Button type="submit" variant="contained" color="primary">{id ? "Update" : "Save"} Task</Button>
+        <Button type="submit" variant="contained" disabled={!title || !description} color="primary">{id ? "Update" : "Save"} Task</Button>
         <Button onClick={() => navigate("/")} color="secondary">Cancel</Button>
       </form>
     </Box>
