@@ -2,19 +2,37 @@ import React, { useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { deleteTask, toggleTaskCompletion } from "../redux/slices/taskSlice";
 import { useNavigate } from "react-router-dom";
-import { Button, Card, CardContent, Typography, Checkbox, Stack, MenuItem, Select, AppBar, Toolbar, Container } from "@mui/material";
+import { 
+    Button, Card, CardContent, Typography, Checkbox, Stack, 
+    MenuItem, Select, AppBar, Toolbar, Container, 
+    Dialog, DialogActions, DialogContent, DialogContentText, DialogTitle 
+} from "@mui/material"; // ✅ Correct imports
 
 function TaskList() {
     const tasks = useSelector((state) => state.tasks.tasks);
     const dispatch = useDispatch();
     const navigate = useNavigate();
     const [filter, setFilter] = useState("All");
+    const [deleteTaskId, setDeleteTaskId] = useState(null);
 
     const filteredTasks = tasks.filter((task) => {
         if (filter === "Completed") return task.completed;
         if (filter === "Incomplete") return !task.completed;
         return true;
     });
+
+    // Function to handle delete confirmation
+    const handleDelete = (id) => {
+        setDeleteTaskId(id);
+    };
+
+    // Function to confirm deletion
+    const handleConfirmDelete = () => {
+        if (deleteTaskId !== null) {
+            dispatch(deleteTask(deleteTaskId));
+            setDeleteTaskId(null); // Close dialog after deleting
+        }
+    };
 
     return (
         <>
@@ -65,16 +83,31 @@ function TaskList() {
                                     <Button variant="contained" color="secondary" onClick={() => navigate(`/edit/${task.id}`)}>
                                         Edit
                                     </Button>
-                                    <Button variant="contained" color="error" onClick={() => dispatch(deleteTask(task.id))}>
+                                    <Button variant="contained" color="error" onClick={() => handleDelete(task.id)}>
                                         Delete
                                     </Button>
-                                    
                                 </Stack>
                             </CardContent>
                         </Card>
                     ))}
                 </Stack>
             </Container>
+
+            {/* Delete Confirmation Dialog */}
+            <Dialog open={deleteTaskId !== null} onClose={() => setDeleteTaskId(null)}>
+                <DialogTitle>Confirm Delete</DialogTitle>
+                <DialogContent>
+                    <DialogContentText>Are you sure you want to delete this task?</DialogContentText>
+                </DialogContent>
+                <DialogActions>
+                    <Button onClick={() => setDeleteTaskId(null)} color="primary">
+                        Cancel
+                    </Button>
+                    <Button onClick={handleConfirmDelete} color="error">
+                        Delete
+                    </Button>
+                </DialogActions>
+            </Dialog>
         </>
     );
 }
