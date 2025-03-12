@@ -8,6 +8,7 @@ import {
     Dialog, DialogActions, DialogContent, DialogContentText, DialogTitle 
 } from "@mui/material"; // ✅ Correct imports
 
+
 function TaskList() {
     const tasks = useSelector((state) => state.tasks.tasks);
     const dispatch = useDispatch();
@@ -63,6 +64,13 @@ function TaskList() {
                         <MenuItem value="Incomplete">Incomplete</MenuItem>
                     </Select>
                 </Stack>
+
+                {filteredTasks.length === 0 && (
+                    <Typography variant="h6" sx={{ mt: 2 }}>
+                        No tasks found!
+                    </Typography>
+                )}
+
 
                 {/* Task List */}
                 <Stack spacing={2} sx={{ mt: 2 }}>

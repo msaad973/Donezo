@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { addTask, editTask } from "../redux/slices/taskSlice";
 import { useNavigate, useParams } from "react-router-dom";
-import { Button, TextField, Box } from "@mui/material";
+import { Button, TextField, Box, Toolbar, AppBar, Typography } from "@mui/material";
 
 function TaskForm() {
   const { id } = useParams();
@@ -24,15 +24,29 @@ function TaskForm() {
   };
 
   return (
-    <Box p={2}>
-      <h2>{id ? "Edit Task" : "Add Task"}</h2>
-      <form onSubmit={handleSubmit}>
-        <TextField fullWidth label="Title" value={title} onChange={(e) => setTitle(e.target.value)} margin="normal" />
-        <TextField fullWidth label="Description" value={description} onChange={(e) => setDescription(e.target.value)} margin="normal" multiline />
-        <Button type="submit" variant="contained" disabled={!title || !description} color="primary">{id ? "Update" : "Save"} Task</Button>
-        <Button onClick={() => navigate("/")} color="secondary">Cancel</Button>
-      </form>
-    </Box>
+    <box>
+      <AppBar position="static">
+        <Toolbar>
+          <Typography variant="h6" sx={{ flexGrow: 1 }} >
+            Task Manager
+          </Typography>
+          <Button color="inherit" onClick={() => navigate("/")}>Home</Button>
+
+        </Toolbar>
+      </AppBar>
+
+      <Box sx={{ maxWidth: 400, mx: "auto", mt: 2 }}>
+        <h2 className="text-2xl text-center">{id ? "Edit" : "Add"} Task</h2>
+        <form onSubmit={handleSubmit}>
+          <TextField fullWidth label="Title" value={title} onChange={(e) => setTitle(e.target.value)} margin="normal" />
+          <TextField fullWidth label="Description" value={description} onChange={(e) => setDescription(e.target.value)} margin="normal" multiline />
+          <div className="mt-4 flex justify-start">
+            <Button type="submit" variant="contained" disabled={!title || !description} color="primary">{id ? "Update" : "Save"} Task</Button>
+            <Button onClick={() => navigate("/")} color="secondary">Cancel</Button>
+          </div>
+        </form>
+      </Box>
+    </box>
   );
 }
 
