@@ -7,6 +7,7 @@ import {
     MenuItem, Select, AppBar, Toolbar, Container, 
     Dialog, DialogActions, DialogContent, DialogContentText, DialogTitle 
 } from "@mui/material"; // ✅ Correct imports
+import Navbar from "../components/Navbar";
 
 
 function TaskList() {
@@ -38,13 +39,7 @@ function TaskList() {
     return (
         <>
             {/* Navbar */}
-            <AppBar position="static" sx={{ bgcolor: "gray.800", boxShadow: 3 }}>
-                <Toolbar>
-                    <Typography variant="h6" sx={{ flexGrow: 1, color: "white" }}>
-                        Task Manager
-                    </Typography>
-                </Toolbar>
-            </AppBar>
+            <Navbar />
 
             <Container maxWidth="sm" sx={{ mt: 4, textAlign: "center" }}>
                 {/* Add Task Button & Filter */}

@@ -1,8 +1,14 @@
+import { AppBar, Button, Toolbar, Typography } from '@mui/material'
 import React from 'react'
 export default function Navbar() {
     return (
-        <nav className="bg-gray-800 text-white py-4 px-6 shadow-md">
-            <h1 className="text-2xl font-bold">Donezo</h1>
-        </nav>
+        <AppBar position="static">
+            <Toolbar>
+                <Typography variant="h6" sx={{ flexGrow: 1 }} >
+                    Donezo
+                </Typography>
+                <Button color="inherit" onClick={() => navigate("/")}>Home</Button>
+            </Toolbar>
+        </AppBar>
     )
 }

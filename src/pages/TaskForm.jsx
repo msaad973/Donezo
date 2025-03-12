@@ -3,6 +3,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { addTask, editTask } from "../redux/slices/taskSlice";
 import { useNavigate, useParams } from "react-router-dom";
 import { Button, TextField, Box, Toolbar, AppBar, Typography } from "@mui/material";
+import Navbar from "../components/Navbar";
 
 function TaskForm() {
   const { id } = useParams();
@@ -25,15 +26,7 @@ function TaskForm() {
 
   return (
     <box>
-      <AppBar position="static">
-        <Toolbar>
-          <Typography variant="h6" sx={{ flexGrow: 1 }} >
-            Task Manager
-          </Typography>
-          <Button color="inherit" onClick={() => navigate("/")}>Home</Button>
-
-        </Toolbar>
-      </AppBar>
+      <Navbar />
 
       <Box sx={{ maxWidth: 400, mx: "auto", mt: 2 }}>
         <h2 className="text-2xl text-center">{id ? "Edit" : "Add"} Task</h2>
