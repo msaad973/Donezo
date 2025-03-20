@@ -1,7 +1,7 @@
 import React from "react";
 import { useSelector } from "react-redux";
 import { useParams, useNavigate } from "react-router-dom";
-import { AppBar, Toolbar, Typography, Button, Box, Card, CardContent, CardHeader } from "@mui/material";
+import { Typography, Button, Box, Card, CardContent } from "@mui/material";
 import Navbar from "../components/Navbar";
 
 function TaskDetails() {
@@ -9,7 +9,12 @@ function TaskDetails() {
   const task = useSelector((state) => state.tasks.tasks.find((t) => t.id === Number(id)));
   const navigate = useNavigate();
 
-  if (!task) return <Typography variant="h6">Task not found.</Typography>;
+  if (!task) return (
+    <div className='flex flex-col gap-4 justify-center items-center mt-10'>
+      <h1 className='text-3xl'>Task Not Found</h1>
+      <Button variant="contained" color="primary" onClick  ={() => navigate("/")}>Back to Home</Button>
+    </div>
+  );
 
   return (
     <Box>

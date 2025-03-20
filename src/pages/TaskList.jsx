@@ -2,11 +2,11 @@ import React, { useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { deleteTask, toggleTaskCompletion } from "../redux/slices/taskSlice";
 import { useNavigate } from "react-router-dom";
-import { 
-    Button, Card, CardContent, Typography, Checkbox, Stack, 
-    MenuItem, Select, AppBar, Toolbar, Container, 
-    Dialog, DialogActions, DialogContent, DialogContentText, DialogTitle 
-} from "@mui/material"; // ✅ Correct imports
+import {
+    Button, Card, CardContent, Typography, Checkbox, Stack,
+    MenuItem, Select, Container,
+    Dialog, DialogActions, DialogContent, DialogContentText, DialogTitle
+} from "@mui/material";
 import Navbar from "../components/Navbar";
 
 

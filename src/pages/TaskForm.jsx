@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { addTask, editTask } from "../redux/slices/taskSlice";
 import { useNavigate, useParams } from "react-router-dom";
-import { Button, TextField, Box, Toolbar, AppBar, Typography } from "@mui/material";
+import { Button, TextField, Box } from "@mui/material";
 import Navbar from "../components/Navbar";
 
 function TaskForm() {
@@ -24,8 +24,11 @@ function TaskForm() {
     navigate("/");
   };
 
+  // console.log("Title:", title);
+  // console.log("Description:", description);
+
   return (
-    <box>
+    <Box>
       <Navbar />
 
       <Box sx={{ maxWidth: 400, mx: "auto", mt: 2 }}>
@@ -39,7 +42,7 @@ function TaskForm() {
           </div>
         </form>
       </Box>
-    </box>
+    </Box>
   );
 }
 
