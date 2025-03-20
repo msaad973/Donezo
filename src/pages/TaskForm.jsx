@@ -24,9 +24,6 @@ function TaskForm() {
     navigate("/");
   };
 
-  // console.log("Title:", title);
-  // console.log("Description:", description);
-
   return (
     <Box>
       <Navbar />
